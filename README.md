@@ -4,4 +4,4 @@ This repository contains magnetic field maps calculated by Wuzheng Meng and Kin 
 
 The right-handed coordinate system is show here:
 
-![sPHENIX Coordinate System](https://github.com/haggerty/sphenixoperamaps/blob/master/coordinate_system.pdf)
+[sPHENIX Coordinate System](coordinate_system.pdf)
