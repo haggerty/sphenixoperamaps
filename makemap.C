@@ -2,7 +2,6 @@
 #include <fstream>
 #include <sstream>
 
-#include "TVector3.h"
 #include "TFile.h"
 #include "TNtuple.h"
 
@@ -14,14 +13,15 @@ Int_t makemap( std::string filename = "TPC_fld_map_f.table" )
   double x,y,z;
   double bx,by,bz;
   
-  double r,phi;
-  double br,bphi;
+  double rho,phi;
+  double brho,bphi;
 
-  std::string rootfile = "sphenix3dmap_0.root";
+  // unit vector from the origin to (x,y) 
+  double vx,vy;
+
+  std::string rootfile = "sphenix3dcylmap_0.root";
   TFile *f = new TFile(rootfile.c_str(),"recreate");
-  TNtuple B("B","sPHENIX 3D Field Map 2020.01.14 (Gauss)","r:phi:z:br:bphi:bz");
-  TVector3 position;
-  TVector3 bfield;
+  TNtuple B("B","sPHENIX 3D Field Map 2020.01.14 (Gauss)","rho:phi:z:brho:bphi:bz");
   
   int linenum = 0; 
   while (getline (ifs, line)) { 
@@ -34,17 +34,17 @@ Int_t makemap( std::string filename = "TPC_fld_map_f.table" )
     }
     //    std::cout << linenum << ": (" << x << "," << y << "," << z << ")" << std::endl;
     
-    position.SetXYZ(x,y,z);
-    bfield.SetXYZ(bx,by,bz);
-
-    r = position.Perp();
-    phi = position.Phi();
+    rho = sqrt(x*x + y*y);
+    phi  = atan2(y,x);
     
-    br = bfield.Perp();
-    bphi = bfield.Phi();
+    vx = x/rho;
+    vy = y/rho;
 
-    B.Fill(r,phi,z,br,bphi,bz);
-    std::cout << r << "," << phi << "," << z << "," << br << "," << bphi << "," << bz << std::endl; 
+    brho = bx*vx + by*vy;
+    bphi = -by*vx + bx*vy;
+
+    B.Fill(rho,phi,z,brho,bphi,bz);
+    std::cout << rho << "," << phi << "," << z << "," << brho << "," << bphi << "," << bz << std::endl; 
 
     linenum++; 
   }
