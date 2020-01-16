@@ -16,6 +16,8 @@ Int_t makemap( std::string filename = "TPC_fld_map_f_shiftby2p85cm.table" )
   double rho,phi;
   double brho,bphi;
 
+  double gauss2tesla = 1.0/10000.0;
+
   // unit vector from the origin to (x,y) 
   double vx,vy;
 
@@ -43,7 +45,7 @@ Int_t makemap( std::string filename = "TPC_fld_map_f_shiftby2p85cm.table" )
     brho = bx*vx + by*vy;
     bphi = -by*vx + bx*vy;
 
-    B.Fill(rho,phi,z,brho,bphi,bz);
+    B.Fill(rho,phi,z,brho*gauss2tesla,bphi*gauss2tesla,bz*gauss2tesla);
     std::cout << rho << "," << phi << "," << z << "," << brho << "," << bphi << "," << bz << std::endl; 
 
     linenum++; 
