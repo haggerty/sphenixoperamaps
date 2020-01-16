@@ -5,3 +5,5 @@ This repository contains magnetic field maps calculated by Wuzheng Meng and Kin 
 The right-handed coordinate system is show here below.  The positions are in centimeters, the field is in Gauss.  The symmetry is broken by the magnet's chimney.  
 
 ![sPHENIX Coordinate System](coordinate_system.png)
+
+The center of the coil is offset from the center of the cryostat by about 28.5 mm as described here: [https://collab.external.bnl.gov/sites/sPHENIX-Magnet/SitePages/Parameters.aspx] and the default maps in the root files reflect that.
