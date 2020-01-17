@@ -6,4 +6,4 @@ The right-handed coordinate system is show here below.  The positions are in cen
 
 ![sPHENIX Coordinate System](coordinate_system.png)
 
-The center of the coil is offset from the center of the cryostat by about 28.5 mm as described here: [https://collab.external.bnl.gov/sites/sPHENIX-Magnet/SitePages/Parameters.aspx] and the default maps in the root files reflect that.
+The center of the coil is offset from the center of the cryostat by about 28.5 mm as described here: [https://collab.external.bnl.gov/sites/sPHENIX-Magnet/SitePages/Parameters.aspx] and the default maps in the root files reflect that.  The phi component of the field is still quite small (< 2 G) and can probably be neglected.
