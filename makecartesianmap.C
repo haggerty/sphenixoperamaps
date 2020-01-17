@@ -17,7 +17,7 @@ Int_t makecartesianmap( std::string filename = "TPC_fld_map_f_shiftby2p85cm.tabl
   
   std::string rootfile = "sphenix3dmapxyz.root";
   TFile *f = new TFile(rootfile.c_str(),"recreate");
-  TNtuple B("B","sPHENIX 3D Field Map TPC_fld_map_f_shiftby2p85cm.table 2020.01.16 (Tesla)","x:y:z:bx:by:bz");
+  TNtuple fieldmap("fieldmap","sPHENIX 3D Field Map TPC_fld_map_f_shiftby2p85cm.table 2020.01.16 (Tesla)","x:y:z:bx:by:bz");
   
   int linenum = 0; 
   while (getline (ifs, line)) { 
@@ -30,7 +30,7 @@ Int_t makecartesianmap( std::string filename = "TPC_fld_map_f_shiftby2p85cm.tabl
     }
     std::cout << x << "," << y << "," << z << "," << bx << "," << by << "," << bz << std::endl;
     
-    B.Fill(x,y,z,bx*gauss2tesla,by*gauss2tesla,bz*gauss2tesla);
+    fieldmap.Fill(x,y,z,bx*gauss2tesla,by*gauss2tesla,bz*gauss2tesla);
 
     linenum++; 
   }

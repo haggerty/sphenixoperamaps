@@ -23,7 +23,7 @@ Int_t makemap( std::string filename = "TPC_fld_map_f_shiftby2p85cm.table" )
 
   std::string rootfile = "sphenix3dmaprhophiz.root";
   TFile *f = new TFile(rootfile.c_str(),"recreate");
-  TNtuple B("B","sPHENIX 3D Field Map TPC_fld_map_f_shiftby2p85cm 2020.01.16 (Gauss)","rho:phi:z:brho:bphi:bz");
+  TNtuple fieldmap("fieldmap","sPHENIX 3D Field Map TPC_fld_map_f_shiftby2p85cm 2020.01.16 (Gauss)","rho:phi:z:brho:bphi:bz");
   
   int linenum = 0; 
   while (getline (ifs, line)) { 
@@ -45,7 +45,7 @@ Int_t makemap( std::string filename = "TPC_fld_map_f_shiftby2p85cm.table" )
     brho = bx*vx + by*vy;
     bphi = -by*vx + bx*vy;
 
-    B.Fill(rho,phi,z,brho*gauss2tesla,bphi*gauss2tesla,bz*gauss2tesla);
+    fieldmap.Fill(rho,phi,z,brho*gauss2tesla,bphi*gauss2tesla,bz*gauss2tesla);
     std::cout << rho << "," << phi << "," << z << "," << brho << "," << bphi << "," << bz << std::endl; 
 
     linenum++; 
